@@ -1,0 +1,7 @@
+{% block content %}
+    <h2>{{ object.title }}</h2>
+    <p>{{ object.post_content }}</p>
+
+    <h6>{{ object.author.get_full_name }}</h6>
+    {{ object.created_date | date:"F d, Y" }}
+{% endblock content %}

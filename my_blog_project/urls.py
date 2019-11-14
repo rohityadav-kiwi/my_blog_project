@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("blogger/", include('blogger.urls')),
     path("blogger/", include('django.contrib.auth.urls')),
-    path("", TemplateView.as_view(template_name='home.html'), name='home'),
+    #path("", TemplateView.as_view(template_name='home.html'), name='home'),
+    path("", include('my_blog_app.urls'))
 ]
