@@ -5,10 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-<a href="{% url 'post_list' %}">Home</a>
-<a href="{% url 'login' %}">login</a>
-<a href="{% url 'signup' %}">signup</a>
-
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save">
+</form>
 
 </body>
 </html>

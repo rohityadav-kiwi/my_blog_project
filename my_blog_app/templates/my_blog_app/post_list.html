@@ -1,37 +1,31 @@
-{% include "my_blog_app/base.html" %}
+{% include "base.html" %}
 <body>
 <h2> BLOG's LIST </h2>
-{% block content %}
-    {% for post in posts %}
-<div>
-    <h2><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-    <p>{{ post.post_content| truncatewords:10  }}</p>
 
+{% block content %}
+{% for post in posts %}
+<div>
+    <h3><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
+{{ post.post_content| truncatewords:10}}
 </div>
 
-{% endfor %}
-{% endblock content %}
-
-
-{% for post in posts %}
-    {{ post.title|upper }}<br>
 {% endfor %}
 
 <div class="pagination">
     <span class="step-links">
-        {% if post.has_previous %}
+        {% if posts.has_previous %}
             <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ post.previous_page_number }}">previous</a>
+            <a href="?page={{ posts.previous_page_number }}">previous</a>
         {% endif %}
 
         <span class="current">
-            Page {{ post.title }} of {{ post.post_content }}.
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
         </span>
 
-        {% if post.has_next %}
-            <a href="?page={{ post.next_page_number }}">next</a>
-            <a href="?page={{ post.paginator.num_pages }}">last &raquo;</a>
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">next</a>
+            <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span>
 </div>
-</body>
+{% endblock %}

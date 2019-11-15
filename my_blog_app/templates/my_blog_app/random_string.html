@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+{% include "base.html" %}
 <body>
-{{res}}
+{% block content %}
+{% for my_post in my_posts %}
+<div>
+    <h3><a href="{% url 'post-detail' my_post.id %}">{{ post.title }}</a></h3>
+{{ my_post.post_content }}
+    <a href="{% url 'post-update' my_post.id %}">update</a>
+    <a href="{% url 'post-delete' my_post.id %}">delete</a>
+</div>
+
+{% endfor %}
+
+{% endblock %}
 </body>
-</html>
